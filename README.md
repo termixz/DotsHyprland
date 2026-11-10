@@ -1,10 +1,10 @@
-# 💫 Hyprland Custom Rice - Multi-Theme (wallust)
+# 💫 Hyprland Custom Rice - Multi-Theme
 #### Based on JaKooLit's Hyprland dots
 
-A highly customized Hyprland (Wayland) environment on Arch Linux with deep theming
-integration (wallust + Catppuccin, Dracula, Gruvbox, Rose Pine, Tokyo Night, Nordic,
-Kanagawa), a wallust-generated color pipeline that themes GRUB, SDDM, terminals, GTK/QT
-and Waybar, plus a quickshell desktop overview panel.
+A highly customized Hyprland (Wayland) environment on Arch Linux with multi-theme support
+(Catppuccin, Dracula, Gruvbox, Rose Pine, Tokyo Night, Nordic, Kanagawa) driven by a set
+of one-click theme scripts that restyle the whole desktop — including GRUB, SDDM,
+terminals, GTK/QT apps and Waybar — plus a quickshell desktop overview panel.
 
 ---
 
@@ -17,7 +17,8 @@ and Waybar, plus a quickshell desktop overview panel.
 | ✨ Quickshell | Desktop overview panel (`qs`), autostarted (`config/quickshell/`) |
 | 📋 SwayNC | Notification center with themed panels |
 | 🔭 Rofi | Main launcher, theme picker, search scripts |
-| 🖼️ wallust | Auto theme generation from wallpaper for all apps |
+| 🎨 themesscript | Theme switcher (`Super + T`) — applies cursors/GTK/icons/wallpaper/waybar/rofi/swaync/kitty/sddm/grub/apps per theme |
+| 🖼️ Wallpapers | pickers & helpers (`theme-wallpaper-picker.sh`, `hypr/UserScripts/Wallpaper*.sh`) |
 | 🖥️ Kitty | Terminal (Dracula + Catppuccin variants, url hints, tabs) |
 | ✢️ Neovim | Editor config (`config/nvim/`) |
 | 🎵 Spicetify | Themed Spotify (`config/spicetify/`) |
@@ -117,7 +118,7 @@ sudo cp -r grub/<theme-name> /usr/share/grub/themes/
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### 📝 Sudoers (for wallust theme scripts)
+### 📝 Sudoers (for theme scripts)
 ```text
 # visudo — add at the end:
 YourUser ALL=(ALL) NOPASSWD: /usr/bin/sed *, /etc/default/grub
@@ -157,7 +158,26 @@ Full list: `hypr/configs/Keybinds.conf` + `hypr/UserConfigs/UserKeybinds.conf`.
 
 ## 🎨 Theme Switching
 
-The whole rice is wallust-driven: applying a wallpaper through the picker (`Super + W`)
-or the rofi theme launcher (`Super + T`) regenerates colors across Hyprland, Waybar,
-rofi, Kitty, SwayNC, GTK apps, SDDM and GRUB — so the whole desktop including the boot
-screens stays in one palette.
+The main driver is `Super + T` → `rofi-theme-launcher.sh` → one script per theme in
+`hypr/scripts/themesscript/` (Dracula, Catppuccin, GruvBox, Nord, RosePine, RosePineDawn,
+TokyoNight…). Each script applies its theme everywhere at once:
+
+| Layer | How it's applied |
+|---|---|
+| Cursors | `gsettings` + `hyprctl setcursor` (+ patch `hypr/lua/Startup_Apps.lua`) |
+| GTK theme & icons | `gsettings` (dconf is the source of truth; `gtk/*/settings.ini` is fallback) |
+| Wallpaper | random pick from `Pictures/wallpapers/Dynamic-Wallpapers/<Theme>/` → `awww img` |
+| Hyprlock | `hypr/hyprlockthemes/<Theme>.conf` → `hyprlock.conf` |
+| SDDM | `sed` config in `metadata.desktop` + copy wallpaper to `Backgrounds/` |
+| GRUB | `sed` `GRUB_THEME=` in `/etc/default/grub` + `grub-mkconfig` |
+| Terminal stack | `kitten themes` for kitty, color aliases for `cava`/`pipes.sh`/`tty-clock`/`lavat` written into `~/.zshrc` |
+| Apps | nvim, Obsidian, VS Code, Firefox `userChrome`, spicetify, Steam (millennium), cavalier, fastfetch wallpaper, opencode theme |
+
+Wallpapers also have their own pickers: `Super + W` → `theme-wallpaper-picker.sh` (rofi
+selection), and `hypr/UserScripts/Wallpaper*.sh` helpers (AutoChange / Random / Select /
+Effects) used by lockscreen & fastfetch pipelines.
+
+> The repository mirrors the whole `hypr/scripts/` and `hypr/UserScripts/` set even if
+> some helpers (e.g. `DarkLight.sh`, parts of `initial-boot.sh`) are not actively called
+> at the moment — they are kept for completeness. wallust still produces the color files
+> the rofi themes are picked from (`config/rofi/wallust/`).
