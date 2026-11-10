@@ -62,18 +62,29 @@ cd yay-bin && makepkg -si
 ```
 
 ### 2. Core Dependencies
+Verified against `pacman -Si` (official repos) / AUR:
 ```bash
 # Hyprland stack
-yay -S --needed hyprland waybar quickshell swaync rofi-wayland awww hyprlock hypridle \
-  wlogout nwg-look wallust kitty pywal-16-colors pavucontrol grimblast-git slurp swappy
+sudo pacman -S --needed hyprland waybar quickshell swaync rofi hyprlock hypridle \
+  wlogout nwg-look kitty pavucontrol slurp swappy jq
+yay -S --needed wallust awww grimblast-git lavat
 
 # Fonts & Icons
-yay -S --needed ttf-firacode-nerd ttf-font-awesome noto-fonts-emoji papirus-icon-theme
+sudo pacman -S --needed woff2-font-awesome noto-fonts-emoji papirus-icon-theme ttf-firacode-nerd
 
 # Utilities & CLI
-yay -S --needed fastfetch cava zsh neovim tty-clock pipes.sh thunar xarchiver btop \
-  oh-my-zsh powerlevel10k
+sudo pacman -S --needed fastfetch cava zsh neovim tty-clock thunar xarchiver btop
+yay -S --needed pipes.sh
+
+# zsh ecosystem (CachyOS: official `cachyos` repo has all of these)
+sudo pacman -S --needed oh-my-zsh-git zsh-autosuggestions zsh-syntax-highlighting
+yay -S --needed zsh-theme-powerlevel10k-git
+
+# Spotify + Steam skinning (used by theme scripts)
+yay -S --needed spicetify-cli millennium
 ```
+> `awww` is an swww fork (wallpaper daemon); on plain Arch it lives in the AUR.
+> On this rice the wallpapers are applied by the theme scripts via `awww img`.
 
 ### 3. Deploy configs
 ```bash
@@ -87,14 +98,41 @@ cp -r Pictures/wallpapers/* ~/Pictures/wallpapers/
 
 ### 4. zsh
 ```bash
-# plugins must be present under $ZSH_CUSTOM/plugins:
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions.git  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-
 cp zsh/.zshrc ~/ && cp zsh/.p10k.zsh ~/
 ```
 
 > `swww` is aliased to `awww` (a fork with image-name support) in `zsh/.zshrc`, so only `awww` needs installing.
+
+### 5. Deploy the rest
+```bash
+# Icon & cursor themes (~/.icons) and GTK themes (~/.themes)
+mkdir -p ~/.icons ~/.themes
+cp -r icons/* ~/.icons/
+cp -r themes/* ~/.themes/
+
+# VS Code: installed extensions + argv.json
+mkdir -p ~/.vscode-oss
+cp vscode-oss/argv.json ~/.vscode-oss/
+cp -r vscode-oss/extensions/* ~/.vscode-oss/extensions/
+
+# Obsidian: apply to the vault from hypr/pathtonotes.conf
+cp -r obsidian/* /run/media/termixz/Disk1/notes/.obsidian/
+
+# Firefox: whole-profile overlays into the default profile
+rsync -a firefox/chrome/ ~/.mozilla/firefox/*.default-release/chrome/
+cp -f firefox/user.js ~/.mozilla/firefox/*.default-release/
+cp -f firefox/*.json ~/.mozilla/firefox/*.default-release/
+rsync -a firefox/extensions/ ~/.mozilla/firefox/*.default-release/extensions/
+
+# zsh oh-my-zsh custom files
+cp -r zsh/oh-my-zsh/custom/* ~/.oh-my-zsh/custom/ 2>/dev/null || true
+
+# Spotify / Steam
+spicetify config color_scheme dracula && spicetify backup apply   # then re-run the matching theme script
+cp spicetify/* ~/.config/spicetify/ && cp config/spicetify/* ~/.config/spicetify/
+```
+> As usual: after copying, run the matching theme script (Super + T) once — it walks
+> through every app and rewrites live config paths (wallpaper, rofi, waybar, VS Code…).
 
 ---
 
