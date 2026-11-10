@@ -21,7 +21,8 @@ and Waybar, plus a quickshell desktop overview panel.
 | 🖥️ Kitty | Terminal (Dracula + Catppuccin variants, url hints, tabs) |
 | ✢️ Neovim | Editor config (`config/nvim/`) |
 | 🎵 Spicetify | Themed Spotify (`config/spicetify/`) |
-| 🎨 VS Code (Code - OSS) | `config/Code - OSS/User/` (settings + keybindings, no cache) |
+| 🔮 Obsidian | Vault `.obsidian` config — plugins, themes, appearance (`obsidian/`) |
+| 🎨 VS Code (Code - OSS) | `config/Code - OSS/User/` + `vscode-oss/` (argv.json + installed extensions) |
 | 🐚 zsh | oh-my-zsh (git, archlinux, syntax-highlighting, autosuggestions) + **Powerlevel10k** (`~/.p10k.zsh`) + custom aliases |
 | 🚀 fastfetch | Compact fetch (`config/fastfetch/`) |
 | 📷 Others | cava, swappy, btop, gtk-3/4, qt5ct/qt6ct, Thunar, wlogout, xarchiver, yay |
@@ -42,7 +43,7 @@ Dots/
 ├── spicetify/        # legacy top-level Spicetify copy — see config/spicetify
 ├── spotifyPKG/       # packaging helper
 ├── themes/           # GTK 2/3/4, Cinnamon, GNOME Shell themes
-├── vscode-oss/       # VS Code extensions list
+├── vscode-oss/       # VS Code: argv.json + installed extensions
 └── zsh/              # oh-my-zsh custom dirs
 ```
 

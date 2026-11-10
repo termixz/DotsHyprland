@@ -9,11 +9,11 @@
   --rm-bg3: #cecacd;
   --rm-bg4: #9893a5;
   
-  --rm-fg0: #575279;
-  --rm-fg1: #575279;
-  --rm-fg2: #797593;
-  --rm-fg3: #9893a5;
-  --rm-fg4: #b4b0c2;
+  --rm-fg0: #000000;
+  --rm-fg1: #000000;
+  --rm-fg2: #000000;
+  --rm-fg3: #000000;
+  --rm-fg4: #000000;
   
   --rm-red: #b4637a;
   --rm-green: #286983;
@@ -28,10 +28,10 @@
   --rm-bg-statusline2: var(--rm-bg1);
   --rm-bg-statusline3: var(--rm-bg2);
 
-  --toolbarbutton-icon-fill: #575279 !important;
+  --toolbarbutton-icon-fill: #000000 !important;
   --toolbarbutton-icon-fill-attention: #d7827e !important;
-  --panel-description-color: #575279 !important;
-  --lwt-toolbarbutton-icon-fill: #575279 !important;
+  --panel-description-color: #000000 !important;
+  --lwt-toolbarbutton-icon-fill: #000000 !important;
 }
 
 * {
@@ -40,7 +40,7 @@
 
 #main-window {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .toolbarbutton-1, 
@@ -55,22 +55,22 @@
 #unified-extensions-button,
 .bookmark-item,
 .toolbarbutton-text {
-  fill: #575279 !important;
-  color: #575279 !important;
+  fill: #000000 !important;
+  color: #000000 !important;
 }
 
 #star-button, #reader-mode-button, #identity-icon, .sharing-icon {
-  fill: #575279 !important;
+  fill: #000000 !important;
 }
 
 @-moz-document url("about:home"), url("about:newtab") {
   body {
     background-color: #faf4ed !important;
-    color: #575279 !important;
+    color: #000000 !important;
   }
   .search-wrapper, .top-sites, .section {
     background-color: #faf4ed !important;
-    color: #575279 !important;
+    color: #000000 !important;
   }
   a {
     color: #56949f !important;
@@ -79,7 +79,7 @@
 
 #nav-bar {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 #urlbar-input, 
@@ -88,17 +88,17 @@
 #urlbar-input-container,
 #urlbar {
   background-color: #f2e9e1 !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .urlbar-input-box > input {
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .urlbarView-row,
 .urlbarView-row * {
-  color: #575279 !important;
-  fill: #575279 !important;
+  color: #000000 !important;
+  fill: #000000 !important;
 }
 
 .urlbarView-row:hover {
@@ -108,7 +108,7 @@
 .urlbarView-title,
 .urlbarView-secondary,
 .urlbarView-url {
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .tab-background {
@@ -121,7 +121,7 @@
 }
 
 .tab-label {
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .tab-secondary-label {
@@ -138,21 +138,21 @@
 
 #PersonalToolbar {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 #PersonalToolbar .bookmark-item .toolbarbutton-text {
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 #sidebar-box {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .sidebar-placesTree {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .sidebar-placesTreechildren::-moz-tree-row {
@@ -160,7 +160,7 @@
 }
 
 .sidebar-placesTreechildren::-moz-tree-cell-text {
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .sidebar-placesTreechildren::-moz-tree-row(selected) {
@@ -169,12 +169,12 @@
 
 #toolbar-menubar {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 menupopup {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 menuitem:hover {
@@ -183,7 +183,7 @@ menuitem:hover {
 
 button {
   background-color: #f2e9e1 !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 toolbar {
@@ -192,7 +192,7 @@ toolbar {
 
 .searchbar-textbox {
   background-color: #f2e9e1 !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 scrollbar {
@@ -205,7 +205,7 @@ scrollbarthumb {
 
 #statuspanel {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 findbar {
@@ -214,12 +214,12 @@ findbar {
 
 input {
   background-color: #f2e9e1 !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 .panel-arrowcontent {
   background-color: #faf4ed !important;
-  color: #575279 !important;
+  color: #000000 !important;
 }
 
 * {
@@ -229,4 +229,47 @@ input {
 
 #navigator-toolbox {
   border-bottom: none !important;
+}
+:root {
+  --toolbarbutton-icon-fill: #000000 !important;
+  --lwt-toolbarbutton-icon-fill: #000000 !important;
+  --panel-icon-color: #000000 !important;
+  --urlbar-icon-fill: #000000 !important;
+  --page-icon-color: #000000 !important;
+}
+
+.toolbarbutton-icon,
+.urlbar-icon,
+.urlbar-search-icon,
+#TabsToolbar .toolbarbutton-icon,
+#PersonalToolbar .toolbarbutton-icon,
+.unified-extensions-item-icon {
+  fill: #000000 !important;
+  color: #000000 !important;
+}
+:root {
+  --toolbar-color: #000000 !important;
+  --lwt-text-color: #000000 !important;
+  --panel-color: #000000 !important;
+  --urlbar-box-text-color: #000000 !important;
+  --urlbar-box-hover-text-color: #000000 !important;
+}
+
+.tab-label,
+.toolbarbutton-text,
+.bookmark-item .toolbarbutton-text,
+#urlbar-input,
+.searchbar-textbox input,
+panelview .toolbarbutton-text,
+.menubar-text,
+menuitem label,
+menu label {
+  color: #000000 !important;
+}
+.tab-close-button,
+.close-icon,
+.tab-throbber,
+.tab-icon-overlay {
+  fill: #000000 !important;
+  color: #000000 !important;
 }

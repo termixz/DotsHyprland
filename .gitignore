@@ -13,3 +13,7 @@ spotifyPKG/spotify-client-*.pkg.tar.zst
 
 # junk backups
 *kitty.conf.pre-fsicer
+
+# huge icon packs (2GB+, install separately)
+icons/rose-pine-dawn-icons/
+icons/rose-pine-moon-icons/
