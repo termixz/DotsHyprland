@@ -12,7 +12,7 @@
     "editor.lineNumbers": "on",
 
     // Запрашивать подтверждение на удаление и Drag&Drop
-    "explorer.confirmDragAndDrop": true,
+    "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
 
     // Настройка excalidraw по дефолту

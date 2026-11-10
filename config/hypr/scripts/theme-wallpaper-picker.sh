@@ -49,6 +49,6 @@ CURRENTWALL="$HOME/Pictures/wallpapers/current"
 rm -f "$CURRENTWALL"/*
 
 cp "$WALL" "$CURRENTWALL/"
-swww img "$WALL" --transition-type any --transition-fps 60 --transition-duration 1
+awww img "$WALL" --transition-type any --transition-fps 60 --transition-duration 1
 ~/.config/hypr/scripts/update_hyprlock_wallpaper.sh
 sudo cp "$HOME/Pictures/wallpapers/current/"* /usr/share/sddm/themes/simple_sddm_2/Backgrounds/default

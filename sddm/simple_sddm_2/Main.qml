@@ -3,9 +3,9 @@
 // Based on https://github.com/MarianArlt/sddm-sugar-dark
 // Distributed under the GPLv3+ License https://www.gnu.org/licenses/gpl-3.0.html
 
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import QtQuick.Effects
 import QtMultimedia
 
@@ -15,7 +15,7 @@ Pane {
     id: root
 
     height: config.ScreenHeight || Screen.height
-    width: config.ScreenWidth || Screen.ScreenWidth
+    width: config.ScreenWidth || Screen.width
     padding: config.ScreenPadding
 
     LayoutMirroring.enabled: config.RightToLeftLayout == "true" ? true : Qt.application.layoutDirection === Qt.RightToLeft
@@ -28,7 +28,7 @@ Pane {
 
     font.family: config.Font
     font.pointSize: config.FontSize !== "" ? config.FontSize : parseInt(height / 80) || 13
-    
+
     focus: true
 
     property bool leftleft: config.HaveFormBackground == "true" &&
@@ -57,7 +57,7 @@ Pane {
         height: parent.height
         width: parent.width
         anchors.fill: parent
-        
+
         Rectangle {
             id: tintLayer
 
@@ -96,18 +96,17 @@ Pane {
             id: virtualKeyboard
             source: "Components/VirtualKeyboard.qml"
 
-            // x * 0.4 = x / 2.5
             width: config.KeyboardSize == "" ? parent.width * 0.4 : parent.width * config.KeyboardSize
             anchors.bottom: parent.bottom
-            anchors.left: config.VirtualKeyboardPosition == "left" ? parent.left : undefined;
-            anchors.horizontalCenter: config.VirtualKeyboardPosition == "center" ? parent.horizontalCenter : undefined;
-            anchors.right: config.VirtualKeyboardPosition == "right" ? parent.right : undefined;
+            anchors.left: config.VirtualKeyboardPosition == "left" ? parent.left : undefined
+            anchors.horizontalCenter: config.VirtualKeyboardPosition == "center" ? parent.horizontalCenter : undefined
+            anchors.right: config.VirtualKeyboardPosition == "right" ? parent.right : undefined
             z: 1
-            
+
             state: "hidden"
             property bool keyboardActive: item ? item.active : false
 
-            function switchState() { state = state == "hidden" ? "visible" : "hidden"}
+            function switchState() { state = state == "hidden" ? "visible" : "hidden" }
             states: [
                 State {
                     name: "visible"
@@ -179,7 +178,7 @@ Pane {
                 }
             ]
         }
-        
+
         Image {
             id: backgroundPlaceholderImage
 
@@ -190,23 +189,23 @@ Pane {
 
         AnimatedImage {
             id: backgroundImage
-            
+
             MediaPlayer {
                 id: player
-                
+
                 videoOutput: videoOutput
-                autoPlay: true
-                playbackRate: config.BackgroundSpeed == "" ? 1.0 : config.BackgroundSpeed
-                loops: -1
-                onPlayingChanged: {
-                    console.log("Video started.")
-                    backgroundPlaceholderImage.visible = false;
+                loops: MediaPlayer.Infinite
+                onPlaybackStateChanged: {
+                    if (player.playbackState === MediaPlayer.PlayingState) {
+                        console.log("Video started.")
+                        backgroundPlaceholderImage.visible = false;
+                    }
                 }
             }
 
             VideoOutput {
                 id: videoOutput
-                
+
                 fillMode: config.CropBackground == "true" ? VideoOutput.PreserveAspectCrop : VideoOutput.PreserveAspectFit
                 anchors.fill: parent
             }
@@ -234,7 +233,7 @@ Pane {
             clip: true
             mipmap: true
 
-            Component.onCompleted:{
+            Component.onCompleted: {
                 var fileType = config.Background.substring(config.Background.lastIndexOf(".") + 1)
                 const videoFileTypes = ["avi", "mp4", "mov", "mkv", "m4v", "webm"];
                 if (videoFileTypes.includes(fileType)) {
@@ -242,7 +241,7 @@ Pane {
                     player.source = Qt.resolvedUrl(config.Background)
                     player.play();
                 }
-                else{
+                else {
                     backgroundImage.source = config.background || config.Background
                 }
             }
@@ -267,21 +266,14 @@ Pane {
 
         MultiEffect {
             id: blur
-            
+
             height: parent.height
-
-            // width: config.FullBlur == "true" ? parent.width : form.width
-            // anchors.centerIn: config.FullBlur == "true" ? parent : form
-
-            // This solves problem when FullBlur and HaveFormBackground is set to true but PartialBlur is false and FormPosition isn't center.
-            width: (config.FullBlur == "true" && config.PartialBlur == "false" && config.FormPosition != "center" ) ? parent.width - formBackground.width : config.FullBlur == "true" ? parent.width : form.width 
+            width: (config.FullBlur == "true" && config.PartialBlur == "false" && config.FormPosition != "center" ) ? parent.width - formBackground.width : config.FullBlur == "true" ? parent.width : form.width
             anchors.centerIn: config.FullBlur == "true" ? backgroundImage : form
 
             source: config.FullBlur == "true" ? backgroundImage : blurMask
             blurEnabled: true
-            autoPaddingEnabled: false
-            blur: config.Blur == "" ? 2.0 : config.Blur
-            blurMax: config.BlurMax == "" ? 48 : config.BlurMax
+            blur: config.Blur == "" ? 1.0 : (parseFloat(config.Blur) / 2)
             visible: config.FullBlur == "true" || config.PartialBlur == "true" ? true : false
         }
     }

@@ -10,10 +10,12 @@
 call plug#begin()
 Plug 'sainnhe/gruvbox-material'
 Plug 'catppuccin/nvim'
+Plug 'shaunsingh/nord.nvim'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'neanias/everforest-nvim'
 Plug 'preservim/nerdtree'
+Plug 'mofiqul/dracula.nvim'
 Plug 'rose-pine/neovim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'tpope/vim-surround'
@@ -26,7 +28,7 @@ require('rose-pine').setup({
     variant = 'dawn',
 })
 require('catppuccin').setup({
-	flavour = 'latte',
+	flavour = 'macchiato',
 })
 END
 

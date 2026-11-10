@@ -7,5 +7,9 @@
     {
         "key": "ctrl+shift+/",
         "command": "editor.action.transformToUppercase"
+    },
+    {
+        "key": "ctrl+shift+i ctrl+shift+o",
+        "command": "claude-dev.SidebarProvider.focus"
     }
 ]

@@ -9,14 +9,26 @@
     font-family: "JetBrains Mono Nerd Font";
     font-weight: bold;
     font-size: 1rem;
+    color: @text-color;
+}
+
+/* Global label fix for system elements */
+label {
+    color: @text-color;
 }
 
 .control-center,
 .notification {
     background: @noti-bg;
-    color: @text-color;
+    color: @text-color !important;
     border-radius: 10px;
     border: none;
+}
+
+/* Force dark text for all children */
+.control-center *,
+.notification * {
+    color: @text-color !important;
 }
 
 .notification label,
@@ -52,13 +64,12 @@
     border: none;
     border-radius: 10px;
     background: @noti-bg;
-    color: @text-color;
+    color: @text-color !important;
 }
 
 .notification-default-action:hover,
 .notification-action:hover {
     background: @noti-bg-hover;
-    color: @text-color;
 }
 
 .notification-action label {
@@ -67,12 +78,16 @@
 
 .close-button {
     background: @red;
-    color: @noti-bg;
+    color: @noti-bg !important;
     border-radius: 10px;
     margin-top: 5px;
     margin-right: 5px;
     padding: 0;
     border: none;
+}
+
+.close-button label {
+    color: @noti-bg !important;
 }
 
 .close-button:hover {
@@ -115,7 +130,7 @@
 .widget-volume,
 .widget-backlight {
     background: @noti-bg-alt;
-    color: @text-color;
+    color: @text-color !important;
     border-radius: 10px;
     border: none;
 }
@@ -135,9 +150,16 @@
     border: none;
 }
 
+.widget-title>button label {
+    color: @text-color !important;
+}
+
 .widget-title>button:hover {
     background: @text-color;
-    color: @red;
+}
+
+.widget-title>button:hover label {
+    color: @red !important;
 }
 
 .widget-dnd>switch {
@@ -161,13 +183,20 @@
     margin: 1px;
     background: @noti-bg;
     border-radius: 10px;
-    color: @text-color;
+    color: @text-color !important;
     border: none;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button label {
+    color: @text-color !important;
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
     background: @text-color;
-    color: @noti-bg-hover;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button:hover label {
+    color: @noti-bg-hover !important;
 }
 
 .widget-volume>box>button {
@@ -182,6 +211,12 @@
     border: none;
     padding: 4px 8px 8px;
     margin: 0 8px 8px;
+}
+
+/* Fix for "No Notifications" text */
+.control-center .placeholder label {
+    color: @text-color !important;
+    opacity: 0.6;
 }
 
 .blank-window {

@@ -1,3 +1,5 @@
+alias swww='awww'
+alias swww-daemon='awww-daemon'
 alias pipes.sh='pipes.sh -c 5 -f 60'
 alias tty-clock='tty-clock -c -C 5 -D'
 alias sl="while true; do sl; done"
@@ -58,3 +60,6 @@ export PATH=$HOME/.local/bin:$PATH
 alias winapps='~/.local/bin/winapps-src/bin/winapps'
 
 export PATH=$PATH:/home/termixz/.spicetify
+alias lavat='lavat -c magenta'
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PATH=~/.npm-global/bin:$PATH

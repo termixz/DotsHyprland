@@ -3,3 +3,13 @@
 **/Cache/
 **/CachedData/
 *.log
+
+# python & build junk
+__pycache__/
+*.pyc
+
+# big packages
+spotifyPKG/spotify-client-*.pkg.tar.zst
+
+# junk backups
+*kitty.conf.pre-fsicer

@@ -56,4 +56,15 @@
 	<patterns>*.iso;*.ISO;*.tar.gz;*.TAR.GZ;*.zip;*.ZIP</patterns>
 	<other-files/>
 </action>
+<action>
+	<icon></icon>
+	<name>Open With Root</name>
+	<submenu></submenu>
+	<unique-id>1785827109595618-1</unique-id>
+	<command>pkexec thunar %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
 </actions>

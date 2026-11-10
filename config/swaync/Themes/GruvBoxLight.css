@@ -9,6 +9,7 @@
     font-family: "JetBrainsMono Nerd Font";
     font-weight: 500;
     font-size: 13px;
+    color: @text-color;
 }
 
 scrollbar,
@@ -21,6 +22,11 @@ trough {
     opacity: 0;
 }
 
+/* Fix for "No Notifications" and global text */
+label {
+    color: @text-color;
+}
+
 .control-center,
 .notification {
     background: @noti-bg;
@@ -30,10 +36,9 @@ trough {
     padding: 5px;
 }
 
-.notification *,
-.notification-row *,
-.notification-background *,
-.notification-content * {
+/* Ensure all nested elements inherit dark color */
+.control-center *,
+.notification * {
     color: @text-color !important;
 }
 
@@ -133,8 +138,15 @@ trough {
     padding: 4px;
 }
 
+.widget-title > button label {
+    color: @text-color !important;
+}
+
 .widget-title > button:hover {
     background: #9D0006;
+}
+
+.widget-title > button:hover label {
     color: @noti-bg !important;
 }
 
@@ -164,6 +176,9 @@ trough {
 
 .widget-buttons-grid > flowbox > flowboxchild > button:hover {
     background: @text-color;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover label {
     color: @noti-bg !important;
 }
 
@@ -179,6 +194,12 @@ trough {
     border: none;
     padding: 4px 8px 8px;
     margin: 0 8px 8px;
+}
+
+/* Placeholder fix */
+.control-center .placeholder label {
+    color: @text-dim !important;
+    opacity: 0.7;
 }
 
 .blank-window {
